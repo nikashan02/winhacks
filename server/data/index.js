@@ -1,7 +1,6 @@
-function mapsData(loc, rad, kw, res){
+function mapsData(loc, rad, res, kw, restKw, pass){
     require('dotenv').config();
     const key = process.env.API_KEY;
-    console.log(key);
     const {Client} = require("@googlemaps/google-maps-services-js");
 
     const client = new Client( {} );
@@ -40,8 +39,18 @@ function mapsData(loc, rad, kw, res){
                                     }
                                 }
                                 if (i==r.data.results.length-1){
-                                    res.send(pDetails);
-                                    //console.log(pDetails);
+                                    pass = pass.concat(pDetails);
+ 
+                                    if (restKw.length == 0) {
+                                        res.send(pass);
+                                    } else {
+                                        let temp = restKw[0];
+                                        restKw.shift();
+                                        mapsData(loc, rad, res, temp, restKw, pass);
+                                    }
+                                    
+                                    return(pDetails);
+                                    
                                 }
                             }
                         })()
