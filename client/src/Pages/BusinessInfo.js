@@ -5,6 +5,7 @@ import { Input, Layout, Select, Row, Col, Button, Modal, Slider } from 'antd';
 import {
   SlidersOutlined
 } from '@ant-design/icons';
+import axios from 'axios';
 
 const { Content, Footer } = Layout
 const { Option } = Select;
@@ -18,10 +19,13 @@ class BusinessInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputType: 'Agriculture',
+      inputType: 'Select a type',
       inputAddress: '',
       inputKeywords: '',
-      isModalVisible: false
+      isModalVisible: false,
+      bySearch: false,
+      radius: 0,
+      data: []
     }
   }
 
@@ -35,6 +39,11 @@ class BusinessInfo extends React.Component {
 
   onSearch = e => {
     this.setState({ inputKeywords: e.target.value })
+    if (e.target.value !== '') {
+      this.setState({bySearch: true});
+    } else {
+      this.setState({bySearch: false}); 
+    }
   }
 
   showModal = () => {
@@ -54,33 +63,60 @@ class BusinessInfo extends React.Component {
     return `${value / 2} km`;
   }
 
+  setRadius = (value) => {
+    let metres = value * 500;
+    this.setState({ radius: metres });
+  }
+
+  searchClick = () => {
+    let keywords = this.state.inputKeywords.split(', ');
+    let address = this.state.inputAddress;
+    let radius = this.state.radius;
+    
+    if (radius > 0 && (keywords.length !== 0 || this.state.inputType !== 'Select a type') && address !== '') {
+      if (this.state.inputType !== 'Select a type') {
+        keywords = [this.state.inputType];
+      }
+      axios.get('/api/search', {'addr': address, 'radius': radius, 'keywords': keywords})
+        .then((res) => {
+          this.setState({ data: res.data });
+        })
+    }
+  }
+
   render() {
     return (
       <Layout className="site-layout">
         <Content style={{ margin: '16px 16px' }}>
-          <Row>
-            <Col span={9} style={{ margin: '0 10px' }}>
+          <Row gutter={16}>
+            <Col span={9} >
               <Input
-                placeholder="Search for a business (separate keywords by commas)"
+                placeholder="Enter some keywords (separate by commas)"
                 allowClear
                 size="large"
                 onChange={this.onSearch}
               />
             </Col>
-            <Col span={5} style={{ margin: '0 10px' }}>
+            <Col span={1}>
+              <p style={{fontSize: '25px', textAlign: 'center'}}>or</p>
+            </Col>
+            <Col span={5} >
               <Select
-                defaultValue="Agriculture"
+                showSearch
+                disabled={this.state.bySearch}
+                defaultValue="Select a type"
                 style={{ width: "100%" }}
                 onChange={this.handleTypeChange}
                 size={'large'}>
+                <Option value="Select a type">Select a type</Option>
                 <Option value="Agriculture">Agriculture</Option>
                 <Option value="Groceries">Groceries</Option>
                 <Option value="Restaurants">Restaurants</Option>
                 <Option value="Greenhouse">Greenhouse</Option>
               </Select>
             </Col>
-            <Col span={2.5} style={{ margin: '0 10px' }}>
-              <Button onClick={this.showModal} size={'large'}>
+            <Col span={3} >
+              <Button onClick={this.showModal} size={'large'} style={{width: '100%'}}>
                 <SlidersOutlined />
                 Set Distance
               </Button>
@@ -90,15 +126,15 @@ class BusinessInfo extends React.Component {
                   size="large"
                   onChange={this.handleAddressChange}
                 />
-                <Slider tipFormatter={this.formatter} marks={marks} defaultValue={0} />
+                <Slider tipFormatter={this.formatter} onChange={this.setRadius} marks={marks} defaultValue={0} />
               </Modal>
             </Col>
-            <Col span={2} style={{ margin: '0 10px' }}>
-              <Button type='primary' size={'large'}>Search</Button>
+            <Col span={2} >
+              <Button type='primary' size={'large'} onClick={this.searchClick}>Search</Button>
             </Col>
           </Row>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Cards />
+            <Cards data={this.state.data} />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>The CKWE Business Directory</Footer>
