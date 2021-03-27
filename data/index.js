@@ -2,7 +2,7 @@ const {Client} = require("@googlemaps/google-maps-services-js");
 
 const client = new Client( {} );
 
-const key = 'AIzaSyBtZrvAEwTvdbpiIh13Tz0ctTPhOEwgho0';
+const key = '';
 
 let pSearch=[];
 let pDetails=[];
