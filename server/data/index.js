@@ -1,9 +1,10 @@
 function mapsData(loc, rad, kw, res){
+    require('dotenv').config();
+    const key = process.env.API_KEY;
+    console.log(key);
     const {Client} = require("@googlemaps/google-maps-services-js");
 
     const client = new Client( {} );
-
-    const key = 'lol';
 
     let pSearch=[];
     let pDetails=[];

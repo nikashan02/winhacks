@@ -7,7 +7,7 @@ let search = async (req, res) => {
         keyword: req.body.keyword
     }*/
     const params = {
-        location: {lat: req.params.lat, lng: req.params.lng},
+        location: req.params.loc,
         radius: req.params.radius,
         keyword: req.params.keyword
     }
