@@ -1,7 +1,9 @@
 const express = require('express');
 
-const DirectoryCtrl = require('../controllers/directory-ctrl')
+const DirectoryCtrl = require('../controllers/directory-ctrl.js')
 
 const router = express.Router();
 
-router.get('/search', DirectoryCtrl.search);
+router.get('/search/:lat/:lng/:radius/:keyword', DirectoryCtrl.search);
+
+module.exports = router

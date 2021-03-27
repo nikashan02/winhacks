@@ -1,9 +1,9 @@
-function mapsData(loc, rad, kw){
+function mapsData(loc, rad, kw, res){
     const {Client} = require("@googlemaps/google-maps-services-js");
 
     const client = new Client( {} );
 
-    const key = 'lol';
+    const key = 'AIzaSyANI1FjQ2-5Q4hfdN7WQCVFYyRBneat_cY';
 
     let pSearch=[];
     let pDetails=[];
@@ -29,7 +29,7 @@ function mapsData(loc, rad, kw){
                         status: q.data.result.business_status
                     });
                     if (i==r.data.results.length-1){
-                        console.log(pDetails)
+                        res.send(pDetails);
                     }
                 }
             })()
@@ -38,6 +38,7 @@ function mapsData(loc, rad, kw){
         .catch(e => {
             console.error('Connection error', e.message)
     })
-    return pDetails
+
 }
 
+module.exports = mapsData;
