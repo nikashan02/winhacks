@@ -16,7 +16,7 @@ class About extends React.Component {
                 <Typography style={{ paddingLeft: 200, paddingTop: 200, paddingRight: 30, minHeight: 360 }} >
                   <Title style={{fontSize: 80}}>About</Title>
                   <Paragraph>
-                  This application was originall intended for finding agricultural and greenhouse businesses in the 
+                  This application was originally intended for finding agricultural and greenhouse businesses in the 
                   Windsor-Essex area in Ontario, Canada, however we have expanded our capabilities to include any business
                   in Canada. Check out our code and DevPost below!
                   </Paragraph>
