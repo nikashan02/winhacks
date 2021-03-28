@@ -21,7 +21,7 @@ class Home extends React.Component {
                   This directory allows anyone to search for local and retail businesses in a given radius from 
                   an address. Search by category, business name, phone number, or any other combination of keywords of your choosing!
                   </Paragraph>
-                  <Button type="primary" shape="round" style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}><a href="/directory">Get Started</a></Button>
+                  <Button type="primary" shape="round" style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}><a href="/#/directory">Get Started</a></Button>
                 </Typography>
               </Col>
               <Col span={12}>
