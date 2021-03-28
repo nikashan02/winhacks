@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import Cards from './Cards.js'
-import { Input, Layout, Select, Row, Col, Button, Modal, Slider } from 'antd';
+import { Input, Layout, Select, Row, Col, Button, Modal, Slider, Typography } from 'antd';
 import {
   SlidersOutlined
 } from '@ant-design/icons';
@@ -13,6 +13,7 @@ const marks = {
   0: '0 km',
   100: '50 km',
 };
+const { Paragraph, Title } = Typography;
 
 class BusinessInfo extends React.Component {
 
@@ -25,6 +26,7 @@ class BusinessInfo extends React.Component {
       isModalVisible: false,
       bySearch: false,
       radius: 0,
+      loadings: [],
       data: []
     }
   }
@@ -68,26 +70,50 @@ class BusinessInfo extends React.Component {
     this.setState({ radius: metres });
   }
 
-  searchClick = () => {
+  searchClick = (index) => {
     let keywords = this.state.inputKeywords.split(', ');
     let address = this.state.inputAddress;
     let radius = this.state.radius;
     
     if (radius > 0 && (keywords.length !== 0 || this.state.inputType !== 'Select a type') && address !== '') {
+
+      this.setState(({ loadings }) => {
+        const newLoadings = [...loadings];
+        newLoadings[index] = true;
+  
+        return {
+          loadings: newLoadings,
+        };
+      });
+
       if (this.state.inputType !== 'Select a type') {
         keywords = [this.state.inputType];
       }
-      axios.get('/api/search', {'addr': address, 'radius': radius, 'keywords': keywords})
+      axios.post('/api/search', {'addr': address, 'radius': radius, 'keywords': keywords})
         .then((res) => {
           this.setState({ data: res.data });
+
+          this.setState(({ loadings }) => {
+            const newLoadings = [...loadings];
+            newLoadings[index] = false;
+    
+            return {
+              loadings: newLoadings,
+            };
+          });
+
         })
     }
   }
 
   render() {
+
+    const { loadings } = this.state;
+
     return (
       <Layout className="site-layout">
         <Content style={{ margin: '16px 16px' }}>
+          <Title style={{fontSize: 40}}>Search for a business</Title>
           <Row gutter={16}>
             <Col span={9} >
               <Input
@@ -98,7 +124,7 @@ class BusinessInfo extends React.Component {
               />
             </Col>
             <Col span={1}>
-              <p style={{fontSize: '25px', textAlign: 'center'}}>or</p>
+              <Paragraph style={{ fontSize: '25px', textAlign: 'center'}}>or</Paragraph>
             </Col>
             <Col span={5} >
               <Select
@@ -130,7 +156,7 @@ class BusinessInfo extends React.Component {
               </Modal>
             </Col>
             <Col span={2} >
-              <Button type='primary' size={'large'} onClick={this.searchClick}>Search</Button>
+              <Button type='primary' size={'large'} loading={loadings[0]} onClick={() => this.searchClick(0)}>Search</Button>
             </Col>
           </Row>
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>

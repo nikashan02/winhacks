@@ -18,6 +18,6 @@ let search = async (req, res) => {
     let pass = []
     //console.log(params);
     params.keywords.shift()
-    mapsData(params.location, params.radius, res, last, keywords, pass);
+    mapsData(params.location, params.radius, res, last, params.keywords, pass);
 }
 module.exports.search =  search;

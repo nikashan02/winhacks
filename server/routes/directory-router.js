@@ -5,6 +5,6 @@ const PhotoCtrl = require('../controllers/photo-ctrl.js')
 
 const router = express.Router();
 
-router.get('/search', DirectoryCtrl.search);
+router.post('/search', DirectoryCtrl.search);
 router.get('/photo/:photo_id', PhotoCtrl.photoReq);
 module.exports = router
