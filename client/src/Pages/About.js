@@ -17,7 +17,7 @@ class About extends React.Component {
                   <Title style={{fontSize: 80}}>About</Title>
                   <Paragraph>
                   This application was originall intended for finding agricultural and greenhouse businesses in the 
-                  Winder-Essex area in Ontario, Canada, however we have expanded our capabilities to include any business
+                  Windsor-Essex area in Ontario, Canada, however we have expanded our capabilities to include any business
                   in Canada. Check out our code and DevPost below!
                   </Paragraph>
                   <Space>

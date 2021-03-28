@@ -7,7 +7,7 @@ import {
   QuestionOutlined
 } from '@ant-design/icons';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
@@ -32,8 +32,8 @@ class App extends React.Component {
   render() {
     const { collapsed } = this.state;
     return (
-      <Router>
-        <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Router>
           <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1" icon={<HomeOutlined />} >
@@ -47,7 +47,6 @@ class App extends React.Component {
               </Menu.Item>
             </Menu>
           </Sider>
-
           <Switch>
             <Route path="/directory">
               <BusinessInfo />
@@ -59,8 +58,8 @@ class App extends React.Component {
               <Home />
             </Route>
           </Switch>
-        </Layout>
-      </Router>
+        </Router>
+      </Layout>
     );
   }
 }
