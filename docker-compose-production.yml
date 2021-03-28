@@ -1,0 +1,29 @@
+version: "3"
+services: 
+  bdirect-client:
+    image: bdirect-client-production:${ENV}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - bdirect
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+  api:
+    image: api
+    restart: unless-stopped
+    env_file: ./server/config/${ENV}.env
+    ports:
+      - "5000:5000"
+    networks:
+      - bdirect
+networks:
+  bdirect:
+    driver: bridge
+volumes:
+  caddy-data:
+    driver: local
+  caddy-config:
+    driver: local

@@ -30,7 +30,7 @@ class Home extends React.Component {
                   sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
                   consequuntur magni </Text>dolores eos qui ratione.
                   </Paragraph>
-                  <Button type="primary" shape="round" style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}><a href="/search">Get Started</a></Button>
+                  <Button type="primary" shape="round" style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}><a href="/directory">Get Started</a></Button>
                 </Typography>
               </Col>
               <Col span={12}>

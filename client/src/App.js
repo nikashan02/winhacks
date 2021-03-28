@@ -40,7 +40,7 @@ class App extends React.Component {
                 <Link to="/">Home</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<FileSearchOutlined />}>
-              <Link to="/search">Business Directory</Link>
+              <Link to="/directory">Business Directory</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<QuestionOutlined />}>
                 <Link to="/about">About</Link>
@@ -49,7 +49,7 @@ class App extends React.Component {
           </Sider>
 
           <Switch>
-            <Route path="/search">
+            <Route path="/directory">
               <BusinessInfo />
             </Route>
             <Route path="/about">

@@ -1,0 +1,26 @@
+version: "3"
+services: 
+  bdirect-client:
+    image: bdirect-client
+    build: ./client/
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - bdirect
+    volumes:
+      - ./client/:/usr/src/app
+      - /usr/sr/app/node_modules
+  api:
+    image: api
+    build: ./server/
+    ports:
+      - "5000:5000"
+    networks:
+      - bdirect
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/sr/app/node_modules
+networks:
+  bdirect:
+    driver: bridge

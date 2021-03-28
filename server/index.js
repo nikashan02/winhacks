@@ -8,6 +8,7 @@ const cors = require('cors');
 const directoryRouter = require('./routes/directory-router');
 
 app.use(cors())
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.json())
 
 //db.on('error', console.error.bind(console, 'MongoDB connection error:'))
