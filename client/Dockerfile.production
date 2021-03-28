@@ -3,16 +3,16 @@ FROM node:14-slim AS builder
 WORKDIR /usr/src/app
 
 COPY ./package.json ./
-COPY ./yarn.lock ./
+COPY ./package-lock.json ./
 
-RUN yarn
+RUN npm install
 
 COPY . .
 
 ARG BASE_URL
 ENV REACT_APP_BASE_URL=${BASE_URL}
 
-RUN yarn run build
+RUN npm run build
 
 ### Copy into secondary Caddy stage
 

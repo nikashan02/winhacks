@@ -89,9 +89,7 @@ class BusinessInfo extends React.Component {
       if (this.state.inputType !== 'Select a type') {
         keywords = [this.state.inputType];
       }
-      const baseURL = process.env.REACT_APP_BASE_URL;
-      const api = axios.create({baseURL});
-      api.post('/search', {'addr': address, 'radius': radius, 'keywords': keywords})
+      axios.post('/api/search', {'addr': address, 'radius': radius, 'keywords': keywords})
         .then((res) => {
           this.setState({ data: res.data });
 
@@ -165,7 +163,7 @@ class BusinessInfo extends React.Component {
             <Cards data={this.state.data} />
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>The CKWE Business Directory</Footer>
+        <Footer style={{ textAlign: 'center' }}>The Radial Business Directory</Footer>
       </Layout>
     )
   }

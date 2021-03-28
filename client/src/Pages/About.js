@@ -16,24 +16,22 @@ class About extends React.Component {
                 <Typography style={{ paddingLeft: 200, paddingTop: 200, paddingRight: 30, minHeight: 360 }} >
                   <Title style={{fontSize: 80}}>About</Title>
                   <Paragraph>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
+                  This application was originall intended for finding agricultural and greenhouse businesses in the 
+                  Winder-Essex area in Ontario, Canada, however we have expanded our capabilities to include any business
+                  in Canada. Check out our code and DevPost below!
                   </Paragraph>
                   <Space>
                     <Button
                       type="primary"
                       shape="round"
                       style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}>
-                        <a href="/search">Github</a>
+                        <a href="https://github.com/nikashan02/winhacks">Github</a>
                     </Button>
                     <Button
                       type="primary"
                       shape="round"
                       style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}>
-                        <a href="/search">Devpost</a>
+                        <a href="/">Devpost</a>
                     </Button>
                   </Space>
                 </Typography>
@@ -41,7 +39,7 @@ class About extends React.Component {
             </Row>
           </div>
         </Content>
-          <Footer style={{ textAlign: 'center' }}>The CKWE Business Directory</Footer>
+          <Footer style={{ textAlign: 'center' }}>The Radial Business Directory</Footer>
       </Layout>
     )
   }

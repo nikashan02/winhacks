@@ -15,20 +15,11 @@ class Home extends React.Component {
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
             <Row>
               <Col span={12}>
-                <Typography style={{ paddingLeft: 200, paddingTop: 200, paddingRight: 30, minHeight: 360 }} >
-                  <Title style={{fontSize: 80}}>Introduction</Title>
+                <Typography style={{ paddingLeft: 200, paddingTop: 150, paddingRight: 30, minHeight: 360 }} >
+                  <Title style={{fontSize: 70}}>Welcome to the Radial Business Directory</Title>
                   <Paragraph>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
-                  </Paragraph>
-                  <Paragraph>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                  totam rem aperiam, eaque ipsa quae ab illo<Text strong> inventore veritatis et quasi architecto beatae vitae dicta
-                  sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                  consequuntur magni </Text>dolores eos qui ratione.
+                  This directory allows anyone to search for local and retail businesses in a given radius from 
+                  an address. Search by category, business name, phone number, or any other combination of keywords of your choosing!
                   </Paragraph>
                   <Button type="primary" shape="round" style={{ fontSize: '15px', height: '40px', margin: '20px 0'}}><a href="/directory">Get Started</a></Button>
                 </Typography>
@@ -39,7 +30,7 @@ class Home extends React.Component {
             </Row>
           </div>
         </Content>
-          <Footer style={{ textAlign: 'center' }}>The CKWE Business Directory</Footer>
+          <Footer style={{ textAlign: 'center' }}>The Radial Business Directory</Footer>
       </Layout>
     )
   }
